@@ -8,7 +8,6 @@ class CrabChampionsUtilsMod : public RC::CppUserModBase
 private:
     ccu m_ccu;
 
-    bool m_has_registered = false;
 public:
     CrabChampionsUtilsMod() : CppUserModBase()
     {
@@ -29,11 +28,7 @@ public:
 
     void on_lua_start(StringViewType mod_name, LuaMadeSimple::Lua& lua, LuaMadeSimple::Lua& main_lua, LuaMadeSimple::Lua& async_lua, std::vector<LuaMadeSimple::Lua*>& hook_luas) override
     {
-        if (!m_has_registered)
-		{
-			m_ccu.registerLuaFunctions(lua);
-			m_has_registered = true;
-		}
+		m_ccu.registerLuaFunctions(lua);
     }
 };
 #define CCU_MOD_API __declspec(dllexport)
